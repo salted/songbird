@@ -1,1 +1,1 @@
-web: node litmusbot.js
+app: node litmusbot.js
