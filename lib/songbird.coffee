@@ -14,6 +14,13 @@ class Songbird
   sonar: (search) ->
     @twitter.stream('statuses/filter', search).on 'tweet', (tweet) =>
       @sing tweet
+    @twitter.stream('user').on 'favorite', (message) =>
+      if message.target.screen_name is 'litmusapp'
+        from    = message.source.screen_name
+        phrase  = ":star: #{ from } favorited this tweet:"
+        @room.speak phrase
+        @sing message.target_object
+
 
   sing: (tweet) ->
     screen_name = tweet.user.screen_name
