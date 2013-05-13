@@ -1,1 +1,1 @@
-app: node litmusbot.js
+app: ./bin/songbird
