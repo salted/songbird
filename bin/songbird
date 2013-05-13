@@ -1,0 +1,24 @@
+#!/usr/bin/env coffee
+Songbird = require('../lib/songbird')
+
+Options =
+  campfire:
+    ssl:                  true
+    account:              process.env.CAMPFIRE_ACCOUNT
+    token:                process.env.CAMPFIRE_API_KEY
+  twitter:
+    consumer_key:         process.env.TWITTER_CONSUMER_KEY
+    consumer_secret:      process.env.TWITTER_CONSUMER_SECRET
+    access_token:         process.env.TWITTER_ACCESS_TOKEN
+    access_token_secret:  process.env.TWITTER_ACCESS_TOKEN_SECRET
+
+songbird = new Songbird Options
+
+# TODO this could be data driven
+# TODO this could support multiple rooms
+songbird.fly process.env.CAMPFIRE_ROOM_ID
+
+# TODO this could be data driven
+songbird.sonar
+  follow: [ '14180282' ] # @litmusapp
+  track:  [ 'litmusapp', 'litmus.com', 'helloscoop', 'litmus.com/scope' ]

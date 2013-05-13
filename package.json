@@ -1,12 +1,18 @@
 {
-  "name": "litmusbot",
-  "version": "0.0.1",
-  "private": true,
+  "name": "songbird",
+  "main": "./lib/songbird",
+  "bin": {
+    "songbird": "./bin/songbird"
+  },
   "scripts": {
-    "start": "node app"
+    "start": "node ./bin/songbird"
   },
   "dependencies": {
-    "twit": "*",
-    "ranger": "*"
+    "coffee-script" : "1.6.x",
+    "twit"          : "1.1.x",
+    "campfire"      : "0.1.x"
+  },
+  "engines": {
+    "node": ">=0.10"
   }
 }
