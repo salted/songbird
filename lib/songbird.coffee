@@ -7,6 +7,11 @@ class Songbird
     @campfire = new Campfire options.campfire
     @twitter  = new Twitter  options.twitter
 
+  identify: (callback) ->
+    @twitter.get 'account/verify_credentials', (error, user) =>
+      @user = user
+      callback()
+
   fly: (room_id) ->
     @campfire.room room_id, (error, room) =>
       @room = room
@@ -14,8 +19,9 @@ class Songbird
   sonar: (search) ->
     @twitter.stream('statuses/filter', search).on 'tweet', (tweet) =>
       @sing tweet
+
     @twitter.stream('user').on 'favorite', (message) =>
-      if message.target.screen_name is 'litmusapp'
+      if message.target.screen_name is @user.screen_name
         from    = message.source.screen_name
         phrase  = ":star: #{ from } favorited this tweet:"
         @room.speak phrase
