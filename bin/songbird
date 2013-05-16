@@ -20,6 +20,6 @@ songbird.identify ->
   songbird.fly process.env.CAMPFIRE_ROOM_ID
 
   # TODO this could be data driven
-  songbird.sonar
-    follow: [ '14180282' ] # @litmusapp
-    track:  [ 'litmusapp', 'litmus.com', 'helloscoop', 'litmus.com/scope' ]
+  songbird.sonar [
+    'litmusapp', 'litmus.com', 'helloscoop', 'litmus.com/scope'
+  ]

@@ -17,7 +17,11 @@ class Songbird
       @room = room
 
   sonar: (search) ->
-    @twitter.stream('statuses/filter', search).on 'tweet', (tweet) =>
+    params =
+      follow: [ @user.id_str ]
+      track:  search
+
+    @twitter.stream('statuses/filter', params).on 'tweet', (tweet) =>
       @sing tweet
 
     @twitter.stream('user').on 'favorite', (message) =>
