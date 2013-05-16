@@ -8,7 +8,7 @@ class Songbird
     @twitter  = new Twitter  options.twitter
 
   fly: (room_id) ->
-    @campfire.join room_id, (error, room) =>
+    @campfire.room room_id, (error, room) =>
       @room = room
 
   sonar: (search) ->
@@ -20,7 +20,6 @@ class Songbird
         phrase  = ":star: #{ from } favorited this tweet:"
         @room.speak phrase
         @sing message.target_object
-
 
   sing: (tweet) ->
     screen_name = tweet.user.screen_name
